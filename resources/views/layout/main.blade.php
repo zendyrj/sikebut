@@ -52,13 +52,13 @@
   </nav>
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="{{ url('') }}" class="brand-link">
-      <img src="assets/img/logoweb.png" alt="AdminLTE Logo" class="brand-image " style="opacity: .8">
+      <img src="./login/images/logo.png" alt="AdminLTE Logo" class="brand-image " style="opacity: 1">
       <span class="brand-text font-weight-bold">SI KEBUT</span>
     </a>
     <div class="sidebar">
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="assets/img/avatar4.png" class="img-circle elevation-2" alt="User Image">
+          <img src="assets/img/avatar3.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block"><b>{{ Session::get('email') }}</b></a>
@@ -76,58 +76,58 @@
          
           <li class="nav-header">Master</li>
           <li class="nav-item">
-            <a href="{{ url('data-pirt') }}" class="nav-link">
+            <a href="{{ url('pegawai') }}" class="nav-link">
               <i class="nav-icon fas fa-folder-open"></i>
               <p>Paperless Pegawai</p>
             </a>
           </li>
           <li class="nav-header">Proses</li>
           <li class="nav-item">
-            <a href="{{ url('data-pirt') }}" class="nav-link">
+            <a href="{{ url('data-kgb') }}" class="nav-link">
               <i class="nav-icon fas fa-folder"></i>
               <p>Kenaikan Gaji Berkala</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('data-pirt') }}" class="nav-link">
+            <a href="{{ url('data-cuti') }}" class="nav-link">
               <i class="nav-icon fas fa-folder"></i>
               <p>Usul Cuti Pegawai</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('data-pirt') }}" class="nav-link">
+            <a href="{{ url('data-pensiun') }}" class="nav-link">
               <i class="nav-icon fas fa-folder"></i>
               <p>Usul Pensiun</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('data-pirt') }}" class="nav-link">
+            <a href="{{ url('data-tugasbelajar') }}" class="nav-link">
               <i class="nav-icon fas fa-folder"></i>
               <p>Usul Tugas Belajar</p>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="{{ url('data-pirt') }}" class="nav-link">
               <i class="nav-icon fas fa-folder"></i>
               <p>Usul Kenaikan Pangkat</p>
             </a>
-          </li>
+          </li> --}}
           
           <li class="nav-item">
-            <a href="{{ url('data-pirt') }}" class="nav-link">
+            <a href="{{ url('data-kariskarsu') }}" class="nav-link">
               <i class="nav-icon fas fa-folder"></i>
               <p>Usul Kartu Suami/Istri</p>
             </a>
           </li>
           <li class="nav-header">Settings</li>
           <li class="nav-item">
-            <a href="{{ url('data-pirt') }}" class="nav-link">
+            <a href="{{ url('data-golru') }}" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>Golongan Ruang</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('data-pirt') }}" class="nav-link">
+            <a href="{{ url('data-jabatan') }}" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>Jabatan</p>
             </a>
@@ -136,12 +136,6 @@
             <a href="{{ route('opd.index') }}" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>OPD</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ url('data-pirt') }}" class="nav-link">
-              <i class="nav-icon fas fa-cog"></i>
-              <p>Golongan Ruang</p>
             </a>
           </li>
           <li class="nav-header">Akun</li>

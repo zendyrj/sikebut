@@ -11,7 +11,7 @@ use PDF;
 use DataTables;
 class OpdController extends Controller
 {
-     public function index()
+    public function index()
     {
         $opds = opd::latest();
         return view('opd.index', compact('opds'));
@@ -22,7 +22,7 @@ class OpdController extends Controller
         return view('opd.create');
     }
 
-    public function getOPD(Request $request)
+    public function getopd(Request $request)
     {
         if ($request->ajax()) {
             $data =  DB::table('opds')->get();
