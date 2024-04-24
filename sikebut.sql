@@ -11,11 +11,31 @@
  Target Server Version : 100427 (10.4.27-MariaDB)
  File Encoding         : 65001
 
- Date: 23/04/2024 15:51:18
+ Date: 24/04/2024 15:16:35
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for agamas
+-- ----------------------------
+DROP TABLE IF EXISTS `agamas`;
+CREATE TABLE `agamas`  (
+  `agama_id` int NOT NULL AUTO_INCREMENT,
+  `agama_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`agama_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of agamas
+-- ----------------------------
+INSERT INTO `agamas` VALUES (1, 'Islam');
+INSERT INTO `agamas` VALUES (2, 'Kristen');
+INSERT INTO `agamas` VALUES (3, 'Katholik');
+INSERT INTO `agamas` VALUES (4, 'Hindu');
+INSERT INTO `agamas` VALUES (5, 'Budha');
+INSERT INTO `agamas` VALUES (6, 'Konghucu');
 
 -- ----------------------------
 -- Table structure for dasarkgb
@@ -199,15 +219,20 @@ CREATE TABLE `pegawais`  (
   `golru_id` int NULL DEFAULT NULL,
   `pegawai_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `pegawai_nip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nomorhp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `alamat_lengkap` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `jeniskelamin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `tempat_lahir` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `tanggal_lahir` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `agama_id` int NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`pegawai_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pegawais
 -- ----------------------------
-INSERT INTO `pegawais` VALUES (1, 1, 1, 15, 'Ir. QURATUL AINI, M.Si', '196708111999012001', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for personal_access_tokens
@@ -399,20 +424,25 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_pegawai` AS SELECT
 	golrus.golru_code, 
 	golrus.golru_name, 
 	jabatans.jabatan_name, 
-	opds.opd_name
+	opds.opd_name, 
+	agamas.agama_name
 FROM
 	pegawais
-	INNER JOIN
+	LEFT JOIN
 	golrus
 	ON 
 		pegawais.golru_id = golrus.golru_id
-	INNER JOIN
+	LEFT JOIN
 	jabatans
 	ON 
 		pegawais.jabatan_id = jabatans.jabatan_id
-	INNER JOIN
+	LEFT JOIN
 	opds
 	ON 
-		pegawais.opd_id = opds.opd_id ;
+		pegawais.opd_id = opds.opd_id
+	LEFT JOIN
+	agamas
+	ON 
+		pegawais.agama_id = agamas.agama_id ;
 
 SET FOREIGN_KEY_CHECKS = 1;
