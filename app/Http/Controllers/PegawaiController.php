@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Carbon;
 use App\Models\pegawai;
+use App\Models\opd;
+use App\Models\jabatan;
+use App\Models\golru;
+use App\Models\agama;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use DB;
@@ -20,7 +24,11 @@ class PegawaiController extends Controller
 
     public function create()
     {
-        return view('pegawai.create');
+        $opds = opd::all();
+        $jabatans = jabatan::all();
+        $golrus = golru::all();
+        $agamas = agama::all();
+        return view('pegawai.create', compact('opds', 'jabatans','golrus','agamas'));
     }
 
     public function getpegawai(Request $request)
@@ -46,17 +54,30 @@ class PegawaiController extends Controller
         ]);
         $mytime = Carbon\Carbon::now();
 
-        $pegawai = pegawai::create([
-            'pegawai_name'     => $request->pegawai_name,
-            'create_at' => $mytime->toDateTimeString(),
-            'updated_at' => $mytime->toDateTimeString(),
-        ]);
-
-        if($pegawai){
-            return redirect()->route('pegawai.index')->with(['success' => 'Data Berhasil Disimpan!']);
-        }else{
-            return redirect()->route('pegawai.index')->with(['error' => 'Data Gagal Disimpan!']);
-        }
+        try {
+            $pegawai = pegawai::create([
+                'pegawai_name'     => $request->pegawai_name,
+                'opd_id'            => $request->opd_id,
+                'jabatan_id'     => $request->jabatan_id,
+                'golru_id'     => $request->golru_id,
+                'pegawai_nip'     => $request->pegawai_nip,
+                'nomorhp'     => $request->nomorhp,
+                'alamat_lengkap'     => $request->alamat_lengkap,
+                'jeniskelamin'     => $request->jeniskelamin,
+                'tempat_lahir'     => $request->tempat_lahir,
+                'agama_id'     => $request->agama_id,
+                'create_at' => $mytime->toDateTimeString(),
+                'updated_at' => $mytime->toDateTimeString(),
+            ]);
+    
+           if ($pegawai) {
+               echo json_encode(array('status'=>true));
+           }else{
+               echo json_encode(array('status'=>false,'pesan'=>'Update Data Gagal!'));
+           }
+       } catch (Exception $e){
+           echo json_encode(array('status'=>false,'pesan'=>$e->getMessage()));
+       }
     }
 
     public function edit(pegawai $pegawai)

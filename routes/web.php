@@ -21,42 +21,43 @@ use App\Http\Controllers\KariskarsuController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('opd', OpdController::class);
-Route::get('/data-opd',[OpdController::class, 'index']);
-Route::get('/data-opd/get-data',[OpdController::class, 'getOPD']);
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('opd', OpdController::class);
+    Route::get('/data-opd',[OpdController::class, 'index']);
+    Route::get('/data-opd/get-data',[OpdController::class, 'getOPD']);
 
-Route::resource('pegawai', PegawaiController::class);
-Route::get('/data-pegawai',[PegawaiController::class, 'index']);
-Route::get('/data-pegawai/get-data',[PegawaiController::class, 'getPEGAWAI']);
+    Route::resource('pegawai', PegawaiController::class);
+    Route::get('/data-pegawai',[PegawaiController::class, 'index']);
+    Route::get('/data-pegawai/get-data',[PegawaiController::class, 'getPEGAWAI']);
 
-Route::resource('golru', GolruController::class);
-Route::get('/data-golru',[GolruController::class, 'index']);
-Route::get('/data-golru/get-data',[GolruController::class, 'getGOLRU']);
+    Route::resource('golru', GolruController::class);
+    Route::get('/data-golru',[GolruController::class, 'index']);
+    Route::get('/data-golru/get-data',[GolruController::class, 'getGOLRU']);
 
-Route::resource('jabatan', JabatanController::class);
-Route::get('/data-jabatan',[JabatanController::class, 'index']);
-Route::get('/data-jabatan/get-data',[JabatanController::class, 'getJABATAN']);
+    Route::resource('jabatan', JabatanController::class);
+    Route::get('/data-jabatan',[JabatanController::class, 'index']);
+    Route::get('/data-jabatan/get-data',[JabatanController::class, 'getJABATAN']);
 
-Route::resource('kgb', KgbController::class);
-Route::get('/data-kgb',[KgbController::class, 'index']);
-Route::get('/data-kgb/get-data',[KgbController::class, 'getKGB']);
+    Route::resource('kgb', KgbController::class);
+    Route::get('/data-kgb',[KgbController::class, 'index']);
+    Route::get('/data-kgb/get-data',[KgbController::class, 'getKGB']);
 
-Route::resource('cuti', CutiController::class);
-Route::get('/data-cuti',[CutiController::class, 'index']);
-Route::get('/data-cuti/get-data',[CutiController::class, 'getCUTI']);
+    Route::resource('cuti', CutiController::class);
+    Route::get('/data-cuti',[CutiController::class, 'index']);
+    Route::get('/data-cuti/get-data',[CutiController::class, 'getCUTI']);
 
-Route::resource('pensiun', PensiunController::class);
-Route::get('/data-pensiun',[PensiunController::class, 'index']);
-Route::get('/data-pensiun/get-data',[PensiunController::class, 'getPENSIUN']);
+    Route::resource('pensiun', PensiunController::class);
+    Route::get('/data-pensiun',[PensiunController::class, 'index']);
+    Route::get('/data-pensiun/get-data',[PensiunController::class, 'getPENSIUN']);
 
-Route::resource('tugasbelajar', TugasbelajarController::class);
-Route::get('/data-tugasbelajar',[TugasbelajarController::class, 'index']);
-Route::get('/data-tugasbelajar/get-data',[TugasbelajarController::class, 'getTUGASBELAJAR']);
+    Route::resource('tugasbelajar', TugasbelajarController::class);
+    Route::get('/data-tugasbelajar',[TugasbelajarController::class, 'index']);
+    Route::get('/data-tugasbelajar/get-data',[TugasbelajarController::class, 'getTUGASBELAJAR']);
 
-Route::resource('kariskarsu', KariskarsuController::class);
-Route::get('/data-kariskarsu',[KariskarsuController::class, 'index']);
-Route::get('/data-kariskarsu/get-data',[KariskarsuController::class, 'getKARISKARSU']);
-
+    Route::resource('kariskarsu', KariskarsuController::class);
+    Route::get('/data-kariskarsu',[KariskarsuController::class, 'index']);
+    Route::get('/data-kariskarsu/get-data',[KariskarsuController::class, 'getKARISKARSU']);
+});
 Route::get('/', [CustomAuthController::class, 'dashboard']); 
 Route::get('dashboard', [CustomAuthController::class, 'dashboard']); 
 Route::get('webmin', [CustomAuthController::class, 'index'])->name('webmin');

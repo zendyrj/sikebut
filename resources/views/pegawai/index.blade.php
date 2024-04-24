@@ -28,7 +28,16 @@
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">Data pegawai</h3>
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-sm btn-success" onclick="add()">
+                      <i class="fas fa-plus"></i> Tambah Data
+                      </button>                   
+                    {{-- <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                    </button> --}}
+                    </div>
                 </div>
+                
                 <!-- /.card-header -->
                 <div class="card-body">
                   <table id="example1" class="table table-bordered table-striped">
@@ -83,6 +92,11 @@
           ],
         });
     });
+
+    function add(){
+      event.preventDefault();
+      $('#vmodal').load('{{ route('pegawai.create') }}');
+    }
     </script>
   
   @endsection
