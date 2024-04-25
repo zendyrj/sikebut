@@ -11,7 +11,7 @@
  Target Server Version : 100427 (10.4.27-MariaDB)
  File Encoding         : 65001
 
- Date: 24/04/2024 15:16:35
+ Date: 25/04/2024 14:51:27
 */
 
 SET NAMES utf8mb4;
@@ -175,23 +175,22 @@ INSERT INTO `opds` VALUES (1, 'DPMPTSP', '2024-04-22 11:29:52', '2024-04-22 11:2
 DROP TABLE IF EXISTS `paperlesses`;
 CREATE TABLE `paperlesses`  (
   `paperless_id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `format_paperless` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `full_format` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `desc_paperless` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `size_paperless` int NOT NULL,
-  `type_paperless` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `multifile` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `form` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kolom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `custom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pegawai_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `paperless_file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `paperless_ket` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`paperless_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of paperlesses
 -- ----------------------------
+INSERT INTO `paperlesses` VALUES (1, '1', 'skp.pdf', 'SKP 2022', NULL, NULL);
+INSERT INTO `paperlesses` VALUES (2, '1', 'skp.pdf', 'SKP 2022', NULL, NULL);
+INSERT INTO `paperlesses` VALUES (3, '1', 'skp.pdf', 'SKP 2022', NULL, NULL);
+INSERT INTO `paperlesses` VALUES (4, '1', 'skp.pdf', 'KGB 2022', NULL, NULL);
+INSERT INTO `paperlesses` VALUES (5, '1', 'skp.pdf', 'SKP 2022', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for password_resets
@@ -223,16 +222,21 @@ CREATE TABLE `pegawais`  (
   `alamat_lengkap` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `jeniskelamin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `tempat_lahir` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `tanggal_lahir` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `tanggal_lahir` date NULL DEFAULT NULL,
   `agama_id` int NULL DEFAULT NULL,
+  `foto_pegawai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`pegawai_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pegawais
 -- ----------------------------
+INSERT INTO `pegawais` VALUES (1, 1, 1, 15, 'Ir. QURATUL AINI, M.Si.', '196708111999012001', '3213', '3213', '3213', '31231', '2024-04-25', 1, NULL, NULL, NULL);
+INSERT INTO `pegawais` VALUES (2, 1, 1, 3, '123', '123', '123', '213', 'Laki-laki', NULL, NULL, 2, NULL, '2024-04-25 01:37:36', '2024-04-25 01:37:36');
+INSERT INTO `pegawais` VALUES (3, 1, 1, 6, '123', '123', '3123', '123123', 'Laki-laki', '312321213', '0000-00-00', 5, NULL, '2024-04-25 01:45:18', '2024-04-25 01:45:18');
+INSERT INTO `pegawais` VALUES (4, 1, 1, 3, '21312', '312312', '3213', '32', 'Laki-laki', '123123', '2024-04-25', 4, NULL, '2024-04-25 01:50:28', '2024-04-25 01:50:28');
 
 -- ----------------------------
 -- Table structure for personal_access_tokens
@@ -413,6 +417,21 @@ CREATE TABLE `users`  (
 -- Records of users
 -- ----------------------------
 INSERT INTO `users` VALUES (1, 'a', 'a@gmail.com', NULL, '$2y$10$aCq9LPvYHHjxJjg/.MH7ueSKaUeKAhR/UB5ns1RQ2iASb68eMaQAW', NULL, '2024-04-22 03:46:09', '2024-04-22 03:46:09');
+
+-- ----------------------------
+-- View structure for v_paperless
+-- ----------------------------
+DROP VIEW IF EXISTS `v_paperless`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_paperless` AS SELECT
+	paperlesses.*, 
+	pegawais.pegawai_nip, 
+	pegawais.pegawai_name
+FROM
+	paperlesses
+	INNER JOIN
+	pegawais
+	ON 
+		paperlesses.pegawai_id = pegawais.pegawai_id ;
 
 -- ----------------------------
 -- View structure for v_pegawai
