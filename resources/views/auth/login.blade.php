@@ -192,8 +192,6 @@ a {
                         </div>
                     </div>
                 </div>
-        
-
                 <div class="col-lg-6">
                     <form method="post" action="{{ route('webmin.custom') }}">
                         @csrf

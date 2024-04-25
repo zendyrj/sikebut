@@ -39,7 +39,7 @@ class PegawaiController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                     $actionBtn = '';
-                        $actionBtn .= "<button class=\"btn btn-sm btn-primary\" style=\"margin:5px;\" onclick=\"edit('{{ $row->pegawai_id }}')\"><i class=\"fa fa-edit\"> Edit Data Pegawai</i></button><button class=\"btn btn-sm btn-success\" style=\"margin:5px;\" onclick=\"edit('{{ $row->pegawai_id }}')\"><i class=\"fa fa-search\"> Lihat Data Paperless</i></button>";
+                        $actionBtn .= "<button class=\"btn btn-sm btn-primary\" style=\"margin:5px;\" onclick=\"edit('{{ $row->pegawai_id }}')\"><i class=\"fa fa-edit\"> Edit Data Pegawai</i></button><a class=\"btn btn-sm btn-success\" style=\"margin:5px;\" href=\"paperless/$row->pegawai_id\"><i class=\"fa fa-search\"> Lihat Data Paperless</i></button>";
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -66,6 +66,8 @@ class PegawaiController extends Controller
                 'jeniskelamin'     => $request->jeniskelamin,
                 'tempat_lahir'     => $request->tempat_lahir,
                 'agama_id'     => $request->agama_id,
+                'tanggal_lahir'     => Carbon\Carbon::parse($request->tanggal_lahir)->format('Y-m-d'),
+                'tempat_lahir'     => $request->tempat_lahir,
                 'create_at' => $mytime->toDateTimeString(),
                 'updated_at' => $mytime->toDateTimeString(),
             ]);
@@ -121,4 +123,5 @@ class PegawaiController extends Controller
             return redirect()->route('pegawai.index')->with(['error' => 'Data Gagal Dihapus!']);
         }
     }
+    
 }

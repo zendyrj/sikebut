@@ -132,6 +132,30 @@
             </div>
         @enderror
     </div>
+    <div class="form-group">
+      <label class="font-weight-bold">Tempat Lahir</label>
+      <input type="text" class="form-control @error('title') is-invalid @enderror" name="tempat_lahir" value="{{ old('tempatlahir') }}" >
+      <!-- error message untuk title -->
+      @error('title')
+          <div class="alert alert-danger mt-2">
+              {{ $message }}
+          </div>
+      @enderror
+  </div>
+  <div class="form-group">
+    <label>Date:</label>
+      <div class="input-group date" id="reservationdate" data-target-input="nearest">
+          <input type="text" class="form-control datetimepicker-input @error('title') is-invalid @enderror"  data-target="#reservationdate" name="tanggal_lahir"/>
+          <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+          </div>
+      </div>
+      @error('title')
+      <div class="alert alert-danger mt-2">
+          {{ $message }}
+      </div>
+  @enderror
+  </div>
             </form> 
         </div>
         <div class="modal-footer">
@@ -149,7 +173,11 @@
     $('.select2').select2()
     $('.select2bs4').select2({
       theme: 'bootstrap4'
-    })
+    });
+     //Date picker
+     $('#reservationdate').datetimepicker({
+        format: 'L'
+    });
     $("#modal-default").modal('show');
 
     function save(){

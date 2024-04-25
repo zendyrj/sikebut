@@ -11,6 +11,7 @@ use App\Http\Controllers\CutiController;
 use App\Http\Controllers\PensiunController;
 use App\Http\Controllers\TugasbelajarController;
 use App\Http\Controllers\KariskarsuController;
+use App\Http\Controllers\PaperlessController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,7 +58,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('kariskarsu', KariskarsuController::class);
     Route::get('/data-kariskarsu',[KariskarsuController::class, 'index']);
     Route::get('/data-kariskarsu/get-data',[KariskarsuController::class, 'getKARISKARSU']);
+
+    Route::get('/paperless/{pegawai_id}',[PaperlessController::class, 'index']);
+    Route::get('/data-paperless/get-data/{pegawai_id}',[PaperlessController::class, 'getPAPERLESS']);
 });
+
 Route::get('/', [CustomAuthController::class, 'dashboard']); 
 Route::get('dashboard', [CustomAuthController::class, 'dashboard']); 
 Route::get('webmin', [CustomAuthController::class, 'index'])->name('webmin');
