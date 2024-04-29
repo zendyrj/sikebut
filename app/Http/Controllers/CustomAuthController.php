@@ -43,7 +43,7 @@ class CustomAuthController extends Controller
                         ->withSuccess('Signed in');
         }
         $validator['emailPassword'] = 'Email address or password is incorrect.';
-        return redirect("login")->withErrors($validator);
+        return redirect("webmin")->withErrors($validator);
     }
 
 
