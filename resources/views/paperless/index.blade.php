@@ -66,7 +66,8 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Keterangan File</th>
+                                        <th>Nama File</th>
+                                        <th>Keterangan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -116,6 +117,10 @@
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex'
+                },
+                {
+                    data: 'berkas_name',
+                    name: 'berkas_name'
                 },
                 {
                     data: 'paperless_ket',

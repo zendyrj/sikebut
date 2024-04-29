@@ -45,7 +45,10 @@
                     <tr>
                       <th>No</th>
                       <th>Nama</th>
+                      <th>NIP</th>
                       <th>Golongan Ruang</th>
+                      <th>Jabatan</th>
+                      <th>Nomor HP</th>
                       <th>Aksi</th>
                     </tr>
                     </thead>
@@ -82,7 +85,10 @@
           columns: [
               {data: 'DT_RowIndex', name: 'DT_RowIndex'},
               {data: 'pegawai_name', name: 'pegawai_name'},
-              {data: 'golru_code', name: 'golru_code'},
+              {data: 'pegawai_nip', name: 'pegawai_nip'},
+              {data: 'golru_name', name: 'golru_name'},
+              {data: 'jabatan_name', name: 'jabatan_name'},
+              {data: 'nomorhp', name: 'nomorhp'},
               {
                   data: 'action', 
                   name: 'action', 
