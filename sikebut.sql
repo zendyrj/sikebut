@@ -11,7 +11,7 @@
  Target Server Version : 100427 (10.4.27-MariaDB)
  File Encoding         : 65001
 
- Date: 29/04/2024 11:00:32
+ Date: 30/04/2024 09:30:39
 */
 
 SET NAMES utf8mb4;
@@ -356,19 +356,22 @@ CREATE TABLE `t_cuti`  (
   `cuti_id` int NOT NULL AUTO_INCREMENT,
   `pegawai_id` int NULL DEFAULT NULL,
   `haricuti` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `tanggalmulai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `tanggalakhir` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `tanggalmulai` date NULL DEFAULT NULL,
+  `tanggalakhir` date NULL DEFAULT NULL,
   `tipe_cuti` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `alasan_cuti` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `alamat_cuti` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `telepon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `ttdcuti` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `ttdcuti` int NULL DEFAULT NULL,
+  `tanggal_sk` date NULL DEFAULT NULL,
+  `nomor_sk` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`cuti_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_cuti
 -- ----------------------------
+INSERT INTO `t_cuti` VALUES (1, 1, '1', '2024-04-29', '2024-04-29', '1', '1', '1', '1', 1, '2024-04-30', '822/021/431.315/2024');
 
 -- ----------------------------
 -- Table structure for t_kariskarsu
@@ -504,6 +507,33 @@ CREATE TABLE `users`  (
 -- Records of users
 -- ----------------------------
 INSERT INTO `users` VALUES (1, 'a', 'a@gmail.com', NULL, '$2y$10$aCq9LPvYHHjxJjg/.MH7ueSKaUeKAhR/UB5ns1RQ2iASb68eMaQAW', NULL, '2024-04-22 03:46:09', '2024-04-22 03:46:09');
+
+-- ----------------------------
+-- View structure for v_cuti
+-- ----------------------------
+DROP VIEW IF EXISTS `v_cuti`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_cuti` AS SELECT
+	pegawais.pegawai_name, 
+	pegawaisttd.pegawai_id AS pegawai_idttd, 
+	pegawaisttd.pegawai_name AS pegawai_namettd, 
+	pegawaisttd.pegawai_nip AS pegawai_nipttd, 
+	t_cuti.*, 
+	golrus.golru_name
+FROM
+	t_cuti
+	LEFT JOIN
+	pegawais
+	ON 
+		t_cuti.pegawai_id = pegawais.pegawai_id
+	LEFT JOIN
+	pegawais AS pegawaisttd
+	ON 
+		t_cuti.ttdcuti = pegawais.pegawai_id AND
+		t_cuti.ttdcuti = pegawaisttd.pegawai_id
+	INNER JOIN
+	golrus
+	ON 
+		pegawaisttd.golru_id = golrus.golru_id ;
 
 -- ----------------------------
 -- View structure for v_paperless
