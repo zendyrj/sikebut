@@ -110,58 +110,58 @@
          
           <li class="nav-header">Master</li>
           <li class="nav-item">
-            <a href="{{ url('pegawai') }}" class="nav-link">
+            <a href="{{ route('pegawai.index') }}" class="nav-link">
               <i class="nav-icon fas fa-folder-open"></i>
               <p>Pegawai</p>
             </a>
           </li>
           <li class="nav-header">Proses</li>
           <li class="nav-item">
-            <a href="{{ url('data-kgb') }}" class="nav-link">
+            <a href="{{ route('kgb.index') }}" class="nav-link">
               <i class="nav-icon fas fa-folder"></i>
               <p>Kenaikan Gaji Berkala</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('data-cuti') }}" class="nav-link">
+            <a href="{{ route('cuti.index') }}" class="nav-link">
               <i class="nav-icon fas fa-folder"></i>
               <p>Usul Cuti Pegawai</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('data-pensiun') }}" class="nav-link">
+            <a href="{{ route('pensiun.index') }}" class="nav-link">
               <i class="nav-icon fas fa-folder"></i>
               <p>Usul Pensiun</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('data-tugasbelajar') }}" class="nav-link">
+            <a href="{{route('tugasbelajar.index') }}" class="nav-link">
               <i class="nav-icon fas fa-folder"></i>
               <p>Usul Tugas Belajar</p>
             </a>
           </li>
           {{-- <li class="nav-item">
-            <a href="{{ url('data-pirt') }}" class="nav-link">
+            <a href="{{ url('pirt') }}" class="nav-link">
               <i class="nav-icon fas fa-folder"></i>
               <p>Usul Kenaikan Pangkat</p>
             </a>
           </li> --}}
           
           <li class="nav-item">
-            <a href="{{ url('data-kariskarsu') }}" class="nav-link">
+            <a href="{{ route('kariskarsu.index') }}" class="nav-link">
               <i class="nav-icon fas fa-folder"></i>
               <p>Usul Kartu Suami/Istri</p>
             </a>
           </li>
           <li class="nav-header">Settings</li>
           <li class="nav-item">
-            <a href="{{ url('data-golru') }}" class="nav-link">
+            <a href="{{ route('golru.index') }}" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>Golongan Ruang</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('data-jabatan') }}" class="nav-link">
+            <a href="{{ route('jabatan.index') }}" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>Jabatan</p>
             </a>

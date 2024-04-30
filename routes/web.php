@@ -44,6 +44,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/data-kgb/get-data',[KgbController::class, 'getKGB']);
 
     Route::resource('cuti', CutiController::class);
+    Route::get('/cuti/view-sk/{cuti_id}',[CutiController::class, 'viewSK']);
+    Route::get('/cuti/cetak-sk/{cuti_id}',[CutiController::class, 'cetakSK']);
     Route::get('/data-cuti',[CutiController::class, 'index']);
     Route::get('/data-cuti/get-data',[CutiController::class, 'getCUTI']);
 

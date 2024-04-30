@@ -71,7 +71,7 @@
           ajax: "{{ url('/data-cuti/get-data') }}",
           columns: [
               {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-              {data: 'cuti_name', name: 'cuti_name'},
+              {data: 'pegawai_name', name: 'pegawai_name'},
               {
                   data: 'action', 
                   name: 'action', 
@@ -81,6 +81,11 @@
           ],
         });
     });
+
+    function cetakSK(cuti_id){
+      event.preventDefault();
+      $('#vmodal').load('{{ url('/cuti/view-sk/') }}'+'/'+cuti_id);
+    }
     </script>
   
   @endsection
