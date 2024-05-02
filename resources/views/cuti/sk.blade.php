@@ -407,9 +407,8 @@
       <tr style="border: 1px solid black; border-collapse: collapse;">
         <td style="border: 1px solid black; border-collapse: collapse;" colspan="2"></td>
         <td style="border: 1px solid black; border-collapse: collapse;"colspan="2">KEPALA DINAS PENANAMAN MODAL<br />PELAYANAN
-          TERPADU SATU PINTU<br />KABUPATEN SITUBONDO,<br><br><br>SITI SANIYAH S.Sos<br>
-          Penata tingkat I<br>
-          NIP.  196605051990032013<br></td>
+          TERPADU SATU PINTU<br />KABUPATEN SITUBONDO,<br><br><br><b style="text-decoration: underline">{{ $detcuti->pegawai_namettd }}</b
+            ><br />{{ $detcuti->golru_namettd }}<br />NIP. {{ $detcuti->pegawai_nipttd }}</td>
       </tr>
     </table>
 
@@ -441,9 +440,8 @@
       <tr style="border: 1px solid black; border-collapse: collapse;">
         <td style="border: 1px solid black; border-collapse: collapse;" colspan="2"></td>
         <td style="border: 1px solid black; border-collapse: collapse;"colspan="2">KEPALA DINAS PENANAMAN MODAL<br />PELAYANAN
-          TERPADU SATU PINTU<br />KABUPATEN SITUBONDO,<br><br><br>SITI SANIYAH S.Sos<br>
-          Penata tingkat I<br>
-          NIP.  196605051990032013<br></td>
+          TERPADU SATU PINTU<br />KABUPATEN SITUBONDO,<br><br><br> <b style="text-decoration: underline">{{ $detcuti->pegawai_namettd }}</b
+          ><br />{{ $detcuti->golru_namettd }}<br />NIP. {{ $detcuti->pegawai_nipttd }}</td>
       </tr>
 
       
