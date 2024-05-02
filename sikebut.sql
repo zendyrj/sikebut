@@ -11,7 +11,7 @@
  Target Server Version : 100427 (10.4.27-MariaDB)
  File Encoding         : 65001
 
- Date: 02/05/2024 07:37:30
+ Date: 02/05/2024 07:50:08
 */
 
 SET NAMES utf8mb4;
@@ -371,7 +371,7 @@ CREATE TABLE `t_cuti`  (
 -- ----------------------------
 -- Records of t_cuti
 -- ----------------------------
-INSERT INTO `t_cuti` VALUES (1, 1, '1', '2024-04-29', '2024-04-29', '1', '1', '1', '1', 1, '2024-04-30', '851/220/431.315.1.1/2024');
+INSERT INTO `t_cuti` VALUES (1, 12, '1', '2024-04-29', '2024-04-29', '1', '1', '1', '1', 1, '2024-04-30', '851/220/431.315.1.1/2024');
 
 -- ----------------------------
 -- Table structure for t_kariskarsu
@@ -506,34 +506,28 @@ CREATE TABLE `users`  (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'a', 'a@gmail.com', NULL, '$2y$10$aCq9LPvYHHjxJjg/.MH7ueSKaUeKAhR/UB5ns1RQ2iASb68eMaQAW', NULL, '2024-04-22 03:46:09', '2024-04-22 03:46:09');
+INSERT INTO `users` VALUES (1, 'a', 'berliana.ey@situbondokab.go.id', NULL, '$2y$10$aCq9LPvYHHjxJjg/.MH7ueSKaUeKAhR/UB5ns1RQ2iASb68eMaQAW', NULL, '2024-04-22 03:46:09', '2024-04-22 03:46:09');
 
 -- ----------------------------
 -- View structure for v_cuti
 -- ----------------------------
 DROP VIEW IF EXISTS `v_cuti`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_cuti` AS SELECT
-	pegawais.pegawai_name, 
-	pegawaisttd.pegawai_id AS pegawai_idttd, 
-	pegawaisttd.pegawai_name AS pegawai_namettd, 
-	pegawaisttd.pegawai_nip AS pegawai_nipttd, 
 	t_cuti.*, 
-	golrus.golru_name
+	ttdpeg.pegawai_name AS pegawai_namettd, 
+	ttdpeg.pegawai_nip AS pegawai_nipttd, 
+	ttdpeg.golru_name AS golru_namettd, 
+	v_pegawai.pegawai_name
 FROM
 	t_cuti
 	LEFT JOIN
-	pegawais
+	v_pegawai
 	ON 
-		t_cuti.pegawai_id = pegawais.pegawai_id
+		t_cuti.pegawai_id = v_pegawai.pegawai_id
 	LEFT JOIN
-	pegawais AS pegawaisttd
+	v_pegawai AS ttdpeg
 	ON 
-		t_cuti.ttdcuti = pegawais.pegawai_id AND
-		t_cuti.ttdcuti = pegawaisttd.pegawai_id
-	INNER JOIN
-	golrus
-	ON 
-		pegawaisttd.golru_id = golrus.golru_id ;
+		t_cuti.ttdcuti = ttdpeg.pegawai_id ;
 
 -- ----------------------------
 -- View structure for v_paperless

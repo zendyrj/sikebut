@@ -139,7 +139,7 @@
       <tr>
         <td colspan="5" align="left">
           <b style="text-decoration: underline">{{ $detcuti->pegawai_namettd }}</b
-          ><br />{{ $detcuti->golru_name }}<br />NIP. {{ $detcuti->pegawai_nipttd }}
+          ><br />{{ $detcuti->golru_namettd }}<br />NIP. {{ $detcuti->pegawai_nipttd }}
         </td>
       </tr>
       <tr>
