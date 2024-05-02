@@ -69,27 +69,27 @@
       <tr>
         <td>NIP</td>
         <td>:</td>
-        <td>{{ $detcuti->pegawai_name }}</td>
+        <td>{{ $detcuti->pegawai_nip }}</td>
       </tr>
       <tr>
         <td>Pangkat/Gol.Ruang</td>
         <td>:</td>
-        <td>{{ $detcuti->pegawai_name }}</td>
+        <td>{{ $detcuti->golru_name }} / {{ $detcuti->golru_code }}</td>
       </tr>
       <tr>
         <td>Jabatan</td>
         <td>:</td>
-        <td>{{ $detcuti->pegawai_name }}</td>
+        <td>{{ $detcuti->jabatan_name }}</td>
       </tr>
       <tr>
         <td>Unit Kerja</td>
         <td>:</td>
-        <td>{{ $detcuti->pegawai_name }}</td>
+        <td>DINAS PENANAMAN MODAL PELAYANAN TERPADU SATU PINTU</td>
       </tr>
     </table>
     <div style="height: 15px"></div>
     <div style="padding-left: 20px; text-align: justify; font-size: 12pt">
-      Selama ….. (…..) hari kerja/kalender, terhitung mulai tanggal ….. sampai dengan tanggal ….., dengan ketentuan sebagai berikut:
+      Selama {{ $detcuti->hari_cuti }} hari kerja/kalender, terhitung mulai tanggal {{ $detcuti->tanggalmulai }} sampai dengan tanggal {{ $detcuti->tanggalakhir }}, dengan ketentuan sebagai berikut:
     </div>
     <div style="text-align: justify; font-size: 12pt">
       <ol type="a">
@@ -226,19 +226,19 @@
       </tr>
       <tr style="border: 1px solid black; border-collapse: collapse;">
         <td style="border: 1px solid black; border-collapse: collapse;">Nama</td>
-        <td style="border: 1px solid black; border-collapse: collapse;">Ir. Quratul</td>
+        <td style="border: 1px solid black; border-collapse: collapse;">{{ $detcuti->pegawai_name }}</td>
         <td style="border: 1px solid black; border-collapse: collapse;">NIP</td>
-        <td style="border: 1px solid black; border-collapse: collapse;">19995</td>
+        <td style="border: 1px solid black; border-collapse: collapse;">{{ $detcuti->pegawai_nip }}</td>
       </tr>
       <tr style="border: 1px solid black; border-collapse: collapse;">
         <td style="border: 1px solid black; border-collapse: collapse;">Jabatan</td>
-        <td style="border: 1px solid black; border-collapse: collapse;">kEPALA</td>
+        <td style="border: 1px solid black; border-collapse: collapse;">{{ $detcuti->jabatan_name }}</td>
         <td style="border: 1px solid black; border-collapse: collapse;">Masa Kerja</td>
-        <td style="border: 1px solid black; border-collapse: collapse;">20 tH</td>
+        <td style="border: 1px solid black; border-collapse: collapse;">20 Tahun</td>
       </tr>
       <tr style="border: 1px solid black; border-collapse: collapse;">
         <td style="border: 1px solid black; border-collapse: collapse;">Pangkat/Gol</td>
-        <td colspan="3" style="border: 1px solid black; border-collapse: collapse;">Pembina Utama Muda / IV.c</td>
+        <td colspan="3" style="border: 1px solid black; border-collapse: collapse;">{{ $detcuti->golru_name }} / {{ $detcuti->golru_code }}</td>
       </tr>
       <tr style="border: 1px solid black; border-collapse: collapse;">
         <td style="border: 1px solid black; border-collapse: collapse;">Unit Kerja</td>
@@ -365,9 +365,9 @@
       <br>
       <br>
       <br>
-      SITI SANIYAH S.Sos<br>
-      Penata tingkat I<br>
-      NIP.  196605051990032013<br>
+      {{ $detcuti->pegawai_name }}<br>
+      {{ $detcuti->golru_name }}<br>
+      NIP.  {{ $detcuti->pegawai_nip }}<br>
       
       </div>
     </td>
