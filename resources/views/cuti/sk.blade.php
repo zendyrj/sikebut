@@ -89,7 +89,7 @@
     </table>
     <div style="height: 15px"></div>
     <div style="padding-left: 20px; text-align: justify; font-size: 12pt">
-      Selama {{ $detcuti->hari_cuti }} hari kerja/kalender, terhitung mulai tanggal {{ $detcuti->tanggalmulai }} sampai dengan tanggal {{ $detcuti->tanggalakhir }}, dengan ketentuan sebagai berikut:
+      Selama {{ $detcuti->haricuti }} hari kerja/kalender, terhitung mulai tanggal {{ $detcuti->tanggalmulai }} sampai dengan tanggal {{ $detcuti->tanggalakhir }}, dengan ketentuan sebagai berikut:
     </div>
     <div style="text-align: justify; font-size: 12pt">
       <ol type="a">

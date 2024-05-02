@@ -11,7 +11,7 @@
  Target Server Version : 100427 (10.4.27-MariaDB)
  File Encoding         : 65001
 
- Date: 02/05/2024 07:50:08
+ Date: 02/05/2024 08:00:27
 */
 
 SET NAMES utf8mb4;
@@ -371,7 +371,7 @@ CREATE TABLE `t_cuti`  (
 -- ----------------------------
 -- Records of t_cuti
 -- ----------------------------
-INSERT INTO `t_cuti` VALUES (1, 12, '1', '2024-04-29', '2024-04-29', '1', '1', '1', '1', 1, '2024-04-30', '851/220/431.315.1.1/2024');
+INSERT INTO `t_cuti` VALUES (1, 14, '1', '2024-04-29', '2024-04-29', '1', '1', '1', '1', 1, '2024-04-30', '851/220/431.315.1.1/2024');
 
 -- ----------------------------
 -- Table structure for t_kariskarsu
@@ -517,9 +517,14 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_cuti` AS SELECT
 	ttdpeg.pegawai_name AS pegawai_namettd, 
 	ttdpeg.pegawai_nip AS pegawai_nipttd, 
 	ttdpeg.golru_name AS golru_namettd, 
-	v_pegawai.pegawai_name
+	v_pegawai.pegawai_name, 
+	v_pegawai.golru_code, 
+	v_pegawai.golru_name, 
+	v_pegawai.jabatan_name, 
+	v_pegawai.pegawai_nip, 
+	v_pegawai.nomorhp
 FROM
-	t_cuti
+	t_cuti AS t_cuti
 	LEFT JOIN
 	v_pegawai
 	ON 
