@@ -12,7 +12,7 @@
           <script>
               $("#modal-default").modal('show');
               document.getElementById( 'myIframeRekom' ).setAttribute( 'src', '' );
-              var url="{{ url('/cuti/cetak-sk/') }}/{{ $detcuti->cuti_id }}#toolbar=1&navpanes=1&statusbar=1&view=Fit;readonly=false&embedded=true; disableprint=false";
+              var url="{{ url('/cuti/cetak-sk/') }}/{{ $detcuti->cuti_id }}#toolbar=1&navpanes=0&statusbar=1&view=Fit;readonly=false&embedded=true; disableprint=false";
               document.getElementById("myIframeRekom").setAttribute("src", url);
           </script>   
           <iframe id="myIframeRekom" style="width:100%; height:800px;" frameborder="0"></iframe>

@@ -116,7 +116,7 @@ class CutiController extends Controller
 
          QrCode::size(1024)
             ->format('png')
-            // ->merge('/storage/app/logoqr.png', .4)
+            ->merge('/public/imgsk/qr/logoqr.png', .4)
             // ->gradient(8, 109, 191,8, 109, 191, 'radial')
             ->style('square')
             ->eye('square')
@@ -124,7 +124,7 @@ class CutiController extends Controller
             ->generate(
                 'https://sipinter.situbondokab.go.id/sppirt/public/persetujuan/Persetujuan-'.$detcuti1->cuti_id.'.pdf', '../public/imgsk/qr/'.$cuti_id.'.png'
             );
-        // QrCode::format('png')->merge('/public/imgsk/qr/logoqr.png')->generate('Make me into a QrCode!');
+        // // QrCode::format('png')->merge('/public/imgsk/qr/logoqr.png')->generate('Make me into a QrCode!');
         // QrCode::backgroundColor(255, 0, 0);
         // QrCode::backgroundColor(255, 0, 0)->generate('Make me into a QrCode!', '../public/imgsk/qr/'.$id_pirt.'.png');
         // QrCode::format('png')->merge('path-to-image.png')->generate();
