@@ -63,6 +63,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/paperless/{pegawai_id}',[PaperlessController::class, 'index']);
     Route::get('/data-paperless/get-data/{pegawai_id}',[PaperlessController::class, 'getPAPERLESS']);
+    Route::get('/paperless-testwa',[PaperlessController::class, 'test_wa']);
+
 });
 
 Route::get('/', [CustomAuthController::class, 'dashboard']); 

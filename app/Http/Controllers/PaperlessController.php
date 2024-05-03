@@ -104,17 +104,16 @@ class PaperlessController extends Controller
 
     public function test_wa() {
         $details = [
-            'title' => 'Hi '.$data->NAMA_PERMOHONAN_PRAKTEK,
-            'body' => $data->ket_praktek.' anda telah dicabut oleh '.Auth::user()->jabatan.' '.Auth::user()->name,
-            'ket' => 'Keterangan: '.$request->keterangan,
-            'id' => $idpemohon,
+            'title' => 'Hi BERLIANA EKA YORINDA, S.Tr.IP.',
+            'body' => 'KGB anda telah bisa diproses oleh Sholihien',
+            'ket' => 'Keterangan: Tanggal 01 Juni 2024',
             'warning' => ''
         ];
         
-        $jadi = 'sipinter.situbondokab.go.id/bsre/sign/ttd/'.$idpemohon.'.pdf';
+        $jadi = 'sipinter.situbondokab.go.id/bsre/sign/ttd/KGB.pdf';
         // kirim whatapp
-        $number=$data->NO_TELP_PRAKTEK;
-        $message= $details['title']."\r\n".$details['body']."\r\n".$details['ket']."\r\nanda dapat mengunduh pencabutan izin melalui link berikut :\r\n".$jadi."\r\n\r\nPesan ini dari DPMPTSP Kab. Situbondo silahkan login di sipinter.situbondokab.go.id";
+        $number='085232703091';
+        $message= $details['title']."\r\n".$details['body']."\r\n".$details['ket']."\r\nanda dapat mengunduh kenaikan gaji berkala anda melalui link berikut :\r\n".$jadi."\r\n\r\nPesan ini dari DPMPTSP Kab. Situbondo silahkan login di sikebut.situbondokab.go.id";
         whatsapp_api($number, $message);
     }
 }
