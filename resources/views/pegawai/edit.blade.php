@@ -200,10 +200,6 @@
     $('.select2bs4').select2({
         theme: 'bootstrap4'
     });
-    //Date picker
-    $('#reservationdate').datetimepicker({
-        format: 'L'
-    });
     $("#modal-default").modal('show');
 
     function save() {

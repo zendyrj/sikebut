@@ -40,6 +40,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/data-jabatan/get-data',[JabatanController::class, 'getJABATAN']);
 
     Route::resource('kgb', KgbController::class);
+    Route::get('/kgb/view-sk/{kgb_id}',[KgbController::class, 'viewSK']);
+    Route::get('/kgb/cetak-sk/{kgb_id}',[KgbController::class, 'cetakSK']);
     Route::get('/data-kgb',[KgbController::class, 'index']);
     Route::get('/data-kgb/get-data',[KgbController::class, 'getKGB']);
 
@@ -67,10 +69,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
-Route::get('/', [CustomAuthController::class, 'dashboard']); 
-Route::get('dashboard', [CustomAuthController::class, 'dashboard']); 
+Route::get('/', [CustomAuthController::class, 'dashboard']);
+Route::get('dashboard', [CustomAuthController::class, 'dashboard']);
 Route::get('webmin', [CustomAuthController::class, 'index'])->name('webmin');
-Route::post('custom-webmin', [CustomAuthController::class, 'customLogin'])->name('webmin.custom'); 
+Route::post('custom-webmin', [CustomAuthController::class, 'customLogin'])->name('webmin.custom');
 Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
-Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
+Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
