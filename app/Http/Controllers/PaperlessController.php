@@ -110,7 +110,7 @@ class PaperlessController extends Controller
             'warning' => ''
         ];
         
-        $jadi = 'sipinter.situbondokab.go.id/bsre/sign/ttd/KGB.pdf';
+        $jadi = 'sikebut.situbondokab.go.id/bsre/sign/ttd/KGB.pdf';
         // kirim whatapp
         $number='085232703091';
         $message= $details['title']."\r\n".$details['body']."\r\n".$details['ket']."\r\nanda dapat mengunduh kenaikan gaji berkala anda melalui link berikut :\r\n".$jadi."\r\n\r\nPesan ini dari DPMPTSP Kab. Situbondo silahkan login di sikebut.situbondokab.go.id";
