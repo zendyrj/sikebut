@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon;
+use App\Models\pegawai;
 use App\Models\cuti;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -22,7 +23,8 @@ class CutiController extends Controller
 
     public function create()
     {
-        return view('cuti.create');
+         $pegawais = pegawai::all();
+        return view('cuti.create', compact('pegawais'));
     }
 
     public function getcuti(Request $request)
@@ -33,7 +35,7 @@ class CutiController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                     $actionBtn = '';
-                        $actionBtn .= "<button class=\"btn btn-sm btn-primary\" style=\"margin:5px;\" onclick=\"edit('$row->cuti_id')\"><i class=\"fa fa-edit\"> Edit Data</i></button><button class=\"btn btn-sm btn-danger\" style=\"margin:5px;\" onclick=\"delete('$row->cuti_id')\"><i class=\"fa fa-trash\"> Hapus Data</i></button><button class=\"btn btn-sm btn-success\" style=\"margin:5px;\" onclick=\"cetakSK('$row->cuti_id')\"><i class=\"fa fa-print\"> Cetak Cuti</i></button>";
+                        $actionBtn .= "<button class=\"btn btn-sm btn-primary\" style=\"margin:5px;\" onclick=\"edit('$row->cuti_id')\"><i class=\"fa fa-edit\"> Edit Data</i></button><button class=\"btn btn-sm btn-success\" style=\"margin:5px;\" onclick=\"cetakSK('$row->cuti_id')\"><i class=\"fa fa-print\"> Cetak Cuti</i></button>";
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -43,22 +45,35 @@ class CutiController extends Controller
 
     public function store(Request $request)
     {
+       try{
         $this->validate($request, [
-            'cuti_name'     => 'required',
+            'pegawai_id'     => 'required',
         ]);
         $mytime = Carbon\Carbon::now();
 
         $cuti = cuti::create([
-            'cuti_name'     => $request->cuti_name,
+            'pegawai_id'     => $request->pegawai_id,
+            'hari_cuti'     => $request->hari_cuti,
+            'tanggalmulai'     => $request->tanggalmulai,
+            'tanggalakhir'     => $request->tanggalakhir,
+            'tipe_cuti'     => 1,
+            'alasan_cuti'     => $request->alasan_cuti,
+            'alamat_cuti'     => $request->alamat_cuti,
+            'ttdcuti'     => 1,
+            'tanggal_sk'     => $request->tanggal_sk,
+            'nomor_sk'     => $request->nomor_sk,
             'create_at' => $mytime->toDateTimeString(),
             'updated_at' => $mytime->toDateTimeString(),
         ]);
 
-        if($cuti){
-            return redirect()->route('cuti.index')->with(['success' => 'Data Berhasil Disimpan!']);
-        }else{
-            return redirect()->route('cuti.index')->with(['error' => 'Data Gagal Disimpan!']);
-        }
+        if ($cuti) {
+               echo json_encode(array('status'=>true));
+           }else{
+               echo json_encode(array('status'=>false,'pesan'=>'Update Data Gagal!'));
+           }
+       } catch (Exception $e){
+           echo json_encode(array('status'=>false,'pesan'=>$e->getMessage()));
+       }
     }
 
     public function edit(cuti $cuti)
@@ -71,7 +86,7 @@ class CutiController extends Controller
         $this->validate($request, [
             'cuti_name'     => 'required',
         ]);
-        
+
         $cuti = cuti::findOrFail($cuti->cuti_id);
         $mytime = Carbon\Carbon::now();
         $cuti->update([
