@@ -110,6 +110,7 @@ class PaperlessController extends Controller
             'warning' => ''
         ];
         
+        
         $jadi = 'sikebut.situbondokab.go.id/bsre/sign/ttd/KGB.pdf';
         // kirim whatapp
         $number='085232703091';
