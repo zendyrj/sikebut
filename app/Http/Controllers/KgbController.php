@@ -213,5 +213,11 @@ class KgbController extends Controller
         $number=$nomorhp;
         $message= $details['title']."\r\n".$details['body']."\r\n".$details['ket']."\r\nanda dapat mengunduh Kenaikan Gaji Berkala anda melalui link berikut :\r\n".$jadi."\r\n\r\nPesan ini dari DPMPTSP Kab. Situbondo";
         whatsapp_api($number, $message);
+
+        ?>
+        <script>
+            window.top.close();
+        </script>
+        <?php
     }
 }
