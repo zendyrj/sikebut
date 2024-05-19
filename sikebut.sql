@@ -11,7 +11,7 @@
  Target Server Version : 80026
  File Encoding         : 65001
 
- Date: 20/05/2024 00:19:27
+ Date: 20/05/2024 00:22:56
 */
 
 SET NAMES utf8mb4;
@@ -141,12 +141,12 @@ COMMIT;
 DROP TABLE IF EXISTS `gajis`;
 CREATE TABLE `gajis` (
   `gaji_id` int NOT NULL AUTO_INCREMENT,
-  `gaji_code` varchar(255) DEFAULT NULL,
-  `gaji_tahun` varchar(255) DEFAULT NULL,
-  `gaji_rupiah` varchar(255) DEFAULT NULL,
-  `gaji_pp` varchar(255) DEFAULT NULL,
+  `gaji_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `gaji_tahun` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `gaji_rupiah` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `gaji_pp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`gaji_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1055 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1055 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of gajis

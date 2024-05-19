@@ -189,7 +189,7 @@ class KgbController extends Controller
         $data =  DB::table('t_kgb')->where('kgb_id', '=', $kgb_id)->get();
         foreach($data as $kgb){
             $pegawai_id = $kgb->pegawai_id;
-            $periode = \Carbon\Carbon::parse($kgb->tmtkgb_br)->format('m');
+            $periode = \Carbon\Carbon::parse($kgb->tmtkgb_br)->format('M');
         }
 
         $data2 =  DB::table('v_pegawai')->where('pegawai_id', '=', $pegawai_id)->get();
@@ -199,9 +199,9 @@ class KgbController extends Controller
         }
 
         $details = [
-            'title' => 'Hi '.$pegawai_name.'.',
-            'body' => 'KGB anda telah selesai diproses oleh BERLIANA EKA YORINDA, S.Tr.IP.',
-            'ket' => 'Keterangan: KGB Periode'.$periode,
+            'title' => 'Hi *'.$pegawai_name.'*.',
+            'body' => 'Kenaikan Gaji Berkala anda telah selesai diproses oleh *BERLIANA EKA YORINDA, S.Tr.IP.*',
+            'ket' => 'Keterangan: Kenaikan Gaji Berkala Periode '.$periode,
             'warning' => ''
         ];
 
@@ -209,7 +209,7 @@ class KgbController extends Controller
         $jadi = 'sikebut.situbondokab.go.id/bsre/sign/ttd/KGB.pdf';
         // kirim whatapp
         $number=$nomorhp;
-        $message= $details['title']."\r\n".$details['body']."\r\n".$details['ket']."\r\nanda dapat mengunduh kenaikan gaji berkala anda melalui link berikut :\r\n".$jadi."\r\n\r\nPesan ini dari DPMPTSP Kab. Situbondo";
+        $message= $details['title']."\r\n".$details['body']."\r\n".$details['ket']."\r\nanda dapat mengunduh Kenaikan Gaji Berkala anda melalui link berikut :\r\n".$jadi."\r\n\r\nPesan ini dari DPMPTSP Kab. Situbondo";
         whatsapp_api($number, $message);
     }
 }
