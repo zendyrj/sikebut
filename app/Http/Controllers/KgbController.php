@@ -151,8 +151,9 @@ class KgbController extends Controller
             return redirect()->route('kgb.index')->with(['error' => 'Data Gagal Dihapus!']);
         }
     }
-     public function viewSK($kgb_id) {
+    public function viewSK($kgb_id) {
         // $id_pirt = urldecode($id_pirt);
+        $this->cetakSK($kgb_id);
         $detkgb = DB::table('v_kgb')->where('kgb_id', $kgb_id)->get();
         return view('kgb.viewSK', compact('detkgb'));
     }
@@ -180,6 +181,9 @@ class KgbController extends Controller
         $html = view('kgb.sk', compact('detkgb'));
         $pdf =  Pdf::loadHTML($html)->setPaper('folio', 'potrait')->setWarnings(false);
         // $pdf->save('/my_stored_file.pdf');
+        if(\File::exists(public_path('/bsre/sign/'.$kgb_id.'.pdf'))){
+            \File::delete(public_path('/bsre/sign/'.$kgb_id.'.pdf'));
+        }
          $pdf->save(public_path('/bsre/sign/'.$kgb_id.'.pdf'));
     	// return $pdf->stream($detkgb1->kgb_id.'.pdf');
 
