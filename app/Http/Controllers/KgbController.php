@@ -170,7 +170,7 @@ class KgbController extends Controller
             ->eye('square')
             ->errorCorrection('H')
             ->generate(
-                'https://sipinter.situbondokab.go.id/sppirt/public/persetujuan/Persetujuan-'.$detkgb1->kgb_id.'.pdf', '../public/imgsk/qr/'.$kgb_id.'.png'
+                'https://sikebut.situbondokab.go.id/public/bsre/sign/'.$detkgb1->kgb_id.'.pdf', '../public/imgsk/qr/'.$kgb_id.'.png'
             );
         // // QrCode::format('png')->merge('/public/imgsk/qr/logoqr.png')->generate('Make me into a QrCode!');
         // QrCode::backgroundColor(255, 0, 0);
@@ -179,7 +179,9 @@ class KgbController extends Controller
         $detkgb = DB::table('v_kgb')->where('kgb_id', $kgb_id)->get();
         $html = view('kgb.sk', compact('detkgb'));
         $pdf =  Pdf::loadHTML($html)->setPaper('folio', 'potrait')->setWarnings(false);
-    	return $pdf->stream($detkgb1->kgb_id.'.pdf');
+        // $pdf->save('/my_stored_file.pdf');
+         $pdf->save(public_path('/bsre/sign/'.$kgb_id.'.pdf'));
+    	// return $pdf->stream($detkgb1->kgb_id.'.pdf');
 
         // return view('kgb.sk', compact('detkgb'));
     }
@@ -206,7 +208,7 @@ class KgbController extends Controller
         ];
 
 
-        $jadi = 'sikebut.situbondokab.go.id/bsre/sign/ttd/KGB.pdf';
+        $jadi = 'sikebut.situbondokab.go.id/bsre/sign/'.$kgb_id.'.pdf';
         // kirim whatapp
         $number=$nomorhp;
         $message= $details['title']."\r\n".$details['body']."\r\n".$details['ket']."\r\nanda dapat mengunduh Kenaikan Gaji Berkala anda melalui link berikut :\r\n".$jadi."\r\n\r\nPesan ini dari DPMPTSP Kab. Situbondo";

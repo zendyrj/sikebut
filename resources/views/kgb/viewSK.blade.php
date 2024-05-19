@@ -13,7 +13,7 @@
                         $("#modal-default").modal('show');
                         document.getElementById('myIframeRekom').setAttribute('src', '');
                         var url =
-                            "{{ url('/kgb/cetak-sk/') }}/{{ $detkgb->kgb_id }}#toolbar=1&navpanes=0&statusbar=1&view=Fit;readonly=false&embedded=true; disableprint=false";
+                            "{{ url('/public/bsre/sign') }}/{{ $detkgb->kgb_id }}.pdf#toolbar=1&navpanes=0&statusbar=1&view=Fit;readonly=false&embedded=true; disableprint=false";
                         document.getElementById("myIframeRekom").setAttribute("src", url);
                     </script>
                     <iframe id="myIframeRekom" style="width:100%; height:800px;" frameborder="0"></iframe>
