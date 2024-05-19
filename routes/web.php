@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('kgb', KgbController::class);
     Route::get('/kgb/view-sk/{kgb_id}',[KgbController::class, 'viewSK']);
+    Route::get('/kgb/selesaikgb/{kgb_id}',[KgbController::class, 'selesaikgb']);
     Route::get('/kgb/cetak-sk/{kgb_id}',[KgbController::class, 'cetakSK']);
     Route::get('/data-kgb',[KgbController::class, 'index']);
     Route::get('/data-kgb/get-data',[KgbController::class, 'getKGB']);

@@ -35,7 +35,7 @@ class KgbController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                     $actionBtn = '';
-                        $actionBtn .= "<button class=\"btn btn-sm btn-primary\" style=\"margin:5px;\" onclick=\"edit('$row->kgb_id')\"><i class=\"fa fa-edit\"> Edit Data</i></button><button class=\"btn btn-sm btn-success\" style=\"margin:5px;\" onclick=\"cetakSK('$row->kgb_id')\"><i class=\"fa fa-print\"> Cetak kgb</i></button>";
+                        $actionBtn .= "<button class=\"btn btn-sm btn-success\" style=\"margin:5px;\" onclick=\"cetakSK('$row->kgb_id')\"><i class=\"fa fa-print\"> Cetak kgb</i></button><button class=\"btn btn-sm btn-primary\" style=\"margin:5px;\" onclick=\"kirimnotif('$row->kgb_id')\"><i class=\"fa fa-info\"> Kirim Notifikasi</i></button>";
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -46,12 +46,59 @@ class KgbController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'kgb_name'     => 'required',
+            'pegawai_id'     => 'required',
         ]);
         $mytime = Carbon\Carbon::now();
 
+
+        $data =  DB::table('v_pegawai')->where('pegawai_id', '=', $request->pegawai_id)->get();
+        foreach($data as $peg){
+            $codegolru = $peg->golru_numb;
+        }
+        $code = $codegolru.$request->mkth_bf;
+
+        $gajilama =  DB::table('gajis')->where('gaji_code', '=', $code)->where('gaji_tahun', '=', '2019')->get();
+
+        foreach($gajilama as $gjlm){
+            $gajilama_bf = $gjlm->gaji_rupiah;
+            $gajipp_lama = $gjlm->gaji_pp;
+        }
+
+        $mkth_br = sprintf("%02d", $request->mkth_bf+2);
+        $code2 = $codegolru.$mkth_br;
+        echo $code2;
+        $gajibaru =  DB::table('gajis')->where('gaji_code', '=', $code2)->where('gaji_tahun', '=', '2024')->get();
+
+        foreach($gajibaru as $gjbr){
+            $gajibaru_br = $gjbr->gaji_rupiah;
+            $gajipp_baru = $gjbr->gaji_pp;
+        }
+
         $kgb = kgb::create([
-            'kgb_name'     => $request->kgb_name,
+            'pegawai_id'     => $request->pegawai_id,
+            'dasarkgb_id'     => '1',
+            'nomorsk_bf'     => $request->nomorsk_bf,
+            'tanggalsk_bf'     => $request->tanggalsk_bf,
+            'tmtsk_bf'     => $request->tmtsk_bf,
+            'blnsk_bf'     => \Carbon\Carbon::parse($request->tmtsk_bf)->format('m'),
+            'thnsk_bf'     => \Carbon\Carbon::parse($request->tmtsk_bf)->format('Y'),
+            'ppsk_bf'     => '2019',
+            'mkth_bf'     => $request->mkth_bf,
+            'mkbl_bf'     => $request->mkbl_bf,
+            'gajilama_bf'     => $gajilama_bf,
+            'selisihtahun'     => '2',
+            'mkth_br'     => $mkth_br,
+            'mkbl_br'     => $request->mkbl_bf,
+            'gajibaru_br'     => $gajibaru_br,
+            'tmtbl_br'     => \Carbon\Carbon::parse($request->tmtsk_bf)->format('m'),
+            'tmtth_br'     => \Carbon\Carbon::parse($mytime)->format('Y'),
+            'tmtkgb_br'     => \Carbon\Carbon::parse($mytime)->format('Y').'-'.\Carbon\Carbon::parse($request->tmtsk_bf)->format('m').'-01',
+            'tahunsk'     => '2024',
+            'pp_lama'     => $gajipp_lama,
+            'pp_baru'     => $gajipp_baru,
+            'nomor_sk'     => $request->nomor_sk,
+            'tanggal_sk'     => $request->tanggal_sk,
+            'ttdcuti'     => 1,
             'create_at' => $mytime->toDateTimeString(),
             'updated_at' => $mytime->toDateTimeString(),
         ]);
@@ -135,5 +182,34 @@ class KgbController extends Controller
     	return $pdf->stream($detkgb1->kgb_id.'.pdf');
 
         // return view('kgb.sk', compact('detkgb'));
+    }
+
+     public function selesaikgb($kgb_id) {
+
+        $data =  DB::table('t_kgb')->where('kgb_id', '=', $kgb_id)->get();
+        foreach($data as $kgb){
+            $pegawai_id = $kgb->pegawai_id;
+            $periode = \Carbon\Carbon::parse($kgb->tmtkgb_br)->format('m');
+        }
+
+        $data2 =  DB::table('v_pegawai')->where('pegawai_id', '=', $pegawai_id)->get();
+        foreach($data2 as $peg){
+            $pegawai_name = $peg->pegawai_name;
+            $nomorhp = $peg->nomorhp;
+        }
+
+        $details = [
+            'title' => 'Hi '.$pegawai_name.'.',
+            'body' => 'KGB anda telah selesai diproses oleh BERLIANA EKA YORINDA, S.Tr.IP.',
+            'ket' => 'Keterangan: KGB Periode'.$periode,
+            'warning' => ''
+        ];
+
+
+        $jadi = 'sikebut.situbondokab.go.id/bsre/sign/ttd/KGB.pdf';
+        // kirim whatapp
+        $number=$nomorhp;
+        $message= $details['title']."\r\n".$details['body']."\r\n".$details['ket']."\r\nanda dapat mengunduh kenaikan gaji berkala anda melalui link berikut :\r\n".$jadi."\r\n\r\nPesan ini dari DPMPTSP Kab. Situbondo";
+        whatsapp_api($number, $message);
     }
 }

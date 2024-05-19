@@ -8,8 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('pegawai.store') }}" method="POST" enctype="multipart/form-data"
-                    id="form_value">
+                <form action="{{ route('kgb.store') }}" method="POST" enctype="multipart/form-data" id="form_value">
                     @csrf
                     <div class="form-group">
                         <label class="font-weight-bold">Pegawai</label>
@@ -30,9 +29,9 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label class="font-weight-bold">Hari kgb</label>
-                        <input type="text" class="form-control @error('title') is-invalid @enderror" name="hari_kgb"
-                            value="{{ old('hari_kgb') }}">
+                        <label class="font-weight-bold">Nomor SK</label>
+                        <input type="text" class="form-control @error('title') is-invalid @enderror"
+                            name="nomorsk_bf" value="{{ old('nomor_sk') }}">
                         <!-- error message untuk title -->
                         @error('title')
                             <div class="alert alert-danger mt-2">
@@ -43,9 +42,9 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="font-weight-bold">Dari Tanggal</label>
+                                <label class="font-weight-bold">Tanggal SK</label>
                                 <input type="date" class="form-control @error('title') is-invalid @enderror"
-                                    name="tanggalmulai" value="{{ old('tanggalmulai') }}">
+                                    name="tanggalsk_bf" value="{{ old('tanggalsk_bf') }}">
                                 <!-- error message untuk title -->
                                 @error('title')
                                     <div class="alert alert-danger mt-2">
@@ -56,9 +55,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="font-weight-bold">Sampai Tanggal</label>
+                                <label class="font-weight-bold">TMT SK</label>
                                 <input type="date" class="form-control @error('title') is-invalid @enderror"
-                                    name="tanggalakhir" value="{{ old('tanggalakhir') }}">
+                                    name="tmtsk_bf" value="{{ old('tmtsk_bf') }}">
                                 <!-- error message untuk title -->
                                 @error('title')
                                     <div class="alert alert-danger mt-2">
@@ -68,26 +67,33 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="font-weight-bold">Alasan kgb</label>
-                        <textarea name="alasan_kgb" id="alasan_kgb" cols="30" class="form-control" rows="4"></textarea>
-                        <!-- error message untuk title -->
-                        @error('title')
-                            <div class="alert alert-danger mt-2">
-                                {{ $message }}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="font-weight-bold">Masa Kerja Tahun</label>
+                                <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                    name="mkth_bf" value="{{ old('mkth_bf') }}">
+                                <!-- error message untuk title -->
+                                @error('title')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label class="font-weight-bold">Alamat kgb</label>
-                        <input type="text" class="form-control @error('title') is-invalid @enderror"
-                            name="alamat_kgb" value="{{ old('alamat_kgb') }}">
-                        <!-- error message untuk title -->
-                        @error('title')
-                            <div class="alert alert-danger mt-2">
-                                {{ $message }}
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="font-weight-bold">Masa Kerja Bulan</label>
+                                <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                    name="mkbl_bf" value="{{ old('mkbl_bf') }}">
+                                <!-- error message untuk title -->
+                                @error('title')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
-                        @enderror
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold">Tanggal SK</label>
@@ -131,6 +137,8 @@
     });
 
     $("#modal-default").modal('show');
+
+
 
     function save() {
         $.ajax({

@@ -7,6 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class kgb extends Model
 {
-    protected $primaryKey = 'opd_id';
+
     use HasFactory;
+   protected $table = 't_kgb';
+    protected $primaryKey = 'kgb_id';
+
+    // protected $fillable = [
+    //     'pegawai_id',
+    //     'hari_cuti',
+    //     'pegawai_id',
+    //     'pegawai_id',
+    //     'pegawai_id',
+    //     'pegawai_id',
+    //     'pegawai_id',
+    // ];
+    protected $guarded = [''];
 }

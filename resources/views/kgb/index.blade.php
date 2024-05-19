@@ -100,6 +100,11 @@
             $('#vmodal').load('{{ url('/kgb/view-sk/') }}' + '/' + kgb_id);
         }
 
+        function kirimnotif(kgb_id) {
+            event.preventDefault();
+            window.open('{{ url('/kgb/selesaikgb/') }}' + '/' + kgb_id, 'send');
+        }
+
         function add() {
             event.preventDefault();
             $('#vmodal').load('{{ route('kgb.create') }}');

@@ -70,7 +70,7 @@ class PaperlessController extends Controller
         $this->validate($request, [
             'paperless_name'     => 'required',
         ]);
-        
+
         $paperless = paperless::findOrFail($paperless->paperless_id);
         $mytime = Carbon\Carbon::now();
         $paperless->update([
@@ -102,19 +102,5 @@ class PaperlessController extends Controller
         }
     }
 
-    public function test_wa() {
-        $details = [
-            'title' => 'Hi BERLIANA EKA YORINDA, S.Tr.IP.',
-            'body' => 'KGB anda telah bisa diproses oleh Sholihien',
-            'ket' => 'Keterangan: Tanggal 01 Juni 2024',
-            'warning' => ''
-        ];
-        
-        
-        $jadi = 'sikebut.situbondokab.go.id/bsre/sign/ttd/KGB.pdf';
-        // kirim whatapp
-        $number='085232703091';
-        $message= $details['title']."\r\n".$details['body']."\r\n".$details['ket']."\r\nanda dapat mengunduh kenaikan gaji berkala anda melalui link berikut :\r\n".$jadi."\r\n\r\nPesan ini dari DPMPTSP Kab. Situbondo silahkan login di sikebut.situbondokab.go.id";
-        whatsapp_api($number, $message);
-    }
+   
 }

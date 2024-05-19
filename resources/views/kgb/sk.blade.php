@@ -140,7 +140,7 @@
                     <td>6.</td>
                     <td>Gaji pokok lama</td>
                     <td>:</td>
-                    <td>Rp. 2.579.400,00 (PP No. 15 Tahun 2019)</td>
+                    <td>Rp. {{ format_uang((int) $detkgb->gajilama_bf) }},00 (PP No. {{ $detkgb->pp_lama }})</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -156,25 +156,25 @@
                     <td></td>
                     <td style="text-align: left">b. Tanggal</td>
                     <td>:</td>
-                    <td>1-03-2022</td>
+                    <td>{{ $detkgb->tanggalsk_bf }}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td style="text-align: left">c. Nomor</td>
                     <td>:</td>
-                    <td>1-03-2022</td>
+                    <td>{{ $detkgb->nomorsk_bf }}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td style="text-align: left;">c. Tanggal mulai berlakunya gaji tsb</td>
                     <td>:</td>
-                    <td>1-03-2022</td>
+                    <td>{{ $detkgb->tmtsk_bf }}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td style="text-align: left">d. Masa kerja golongan pada tanggal tsb</td>
                     <td>:</td>
-                    <td>1-03-2022</td>
+                    <td>{{ $detkgb->mkth_bf }} Tahun {{ $detkgb->mkbl_bf }} Bulan</td>
                 </tr>
                 <tr>
                     <td colspan="4">Diberikan kenaikan gaji berkala hingga memperoleh:</td>
@@ -183,13 +183,13 @@
                     <td>7.</td>
                     <td>Gaji pokok baru</td>
                     <td>:</td>
-                    <td>Rp. 2.873.500,00 (PP No. 5 Tahun 2024</td>
+                    <td>Rp. {{ format_uang((int) $detkgb->gajibaru_br) }},00 (PP No. {{ $detkgb->pp_baru }})</td>
                 </tr>
                 <tr>
                     <td>8.</td>
                     <td>Berdasarkan masa kerja</td>
                     <td>:</td>
-                    <td>02 tahun 00 bulan</td>
+                    <td>{{ $detkgb->mkth_br }} Tahun {{ $detkgb->mkbl_br }} Bulan</td>
                 </tr>
                 <tr>
                     <td>9.</td>
@@ -201,12 +201,12 @@
                     <td>10.</td>
                     <td>Berlakunya mulai tanggal</td>
                     <td>:</td>
-                    <td>01 - 03 - 2024</td>
+                    <td>{{ $detkgb->tmtkgb_br }}</td>
                 </tr>
             </table>
             <div style="height: 5px"></div>
             <div style="text-align: justify; font-size: 12pt; line-height: 1,5;text-indent: 45px;">
-                Diharap agar sesuai dengan Peraturan Pemerintah Nomor 5 Tahun 2024 kepada Pegawai tersebut dapat
+                Diharap agar sesuai dengan Peraturan Pemerintah Nomor 05 Tahun 2024 kepada Pegawai tersebut dapat
                 dibayarkan penghasilannya berdasarkan gaji pokoknya yang baru.
                 {{-- {{ Carbon\Carbon::parse($detkgb->tanggal_rekom)->isoFormat('DD MMMM Y' }} --}}
             </div>
