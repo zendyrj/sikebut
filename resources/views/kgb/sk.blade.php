@@ -80,8 +80,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td style="text-align: left;vertical-align: top; text-decoration:underline; font-weight:bold;">NUR
-                    ULFA APRILIA, S.E.</td>
+                <td style="text-align: left;vertical-align: top; text-decoration:underline; font-weight:bold;">{{ $detkgb->pegawai_name }}</td>
                 <td></td>
                 <td>di - </td>
             </tr>
